@@ -9,10 +9,7 @@ class MyIDApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const IDCard(),
-      debugShowCheckedModeBanner: false,
-    );
+    return MaterialApp(home: const IDCard(), debugShowCheckedModeBanner: false);
   }
 }
 
@@ -22,74 +19,52 @@ class IDCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-        title: const Text('Digital ID'),
-        backgroundColor: Colors.teal.shade700,
+        title: const Text('Digital ID Card'),
         centerTitle: true,
+        backgroundColor: Colors.teal,
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.teal.withOpacity(0.2),
-                blurRadius: 10,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Card(
+          elevation: 5,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const SizedBox(height: 16),
               const CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/profile.jpg'),
+                backgroundImage: AssetImage(
+                  'assets/profile.jpg',
+                ), // Ensure this image exists
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Name: Rafi',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                'Department: Computer Science and Engineering',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 10),
+              const Divider(thickness: 1),
+              const ListTile(
+                leading: Icon(Icons.perm_identity),
+                title: Text('ID: 1061_FA_8'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.email),
+                title: Text('Email: m.raafi.raahman@example.com'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.phone),
+                title: Text('Phone: +880-1612702554'),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Rafi',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                'Computer Science & Engineering',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const Divider(height: 30, thickness: 1),
-              infoRow(Icons.perm_identity, 'ID', '1061_FA_8'),
-              infoRow(Icons.email, 'Email', 'm.raafi.raahman@example.com'),
-              infoRow(Icons.phone, 'Phone', '+880-1612702554'),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget infoRow(IconData icon, String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.teal),
-          const SizedBox(width: 10),
-          Text(
-            '$label:',
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(width: 6),
-          Expanded(
-            child: Text(
-              value,
-              style: const TextStyle(color: Colors.black87),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
       ),
     );
   }
